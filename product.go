@@ -1,10 +1,10 @@
 package main
 
+	type Product struct {
+		Position int `json:"position"`
+		Name string `json:"name"`
+		Store string `json:"store"`
+		Url string  `json:"url"`
+	}
 
-type Product struct {
-	Name string `json:"name"`
-	Url string `json:"url" `
-	Store string `json:"store" `
-}
-
-type Products []Product
+	type Products []Product

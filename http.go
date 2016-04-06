@@ -1,21 +1,25 @@
 package main
 
 import (
-			"encoding/json"
-			"net/http"
+		"net/http"
+		"encoding/json"	
 )
 
-func getProducts(w http.ResponseWriter, r *http.Request) {
-	products := Products {
-		Product{Name: "Batata", Url: "http://google.com.br", Store: "Extra"},
-		Product{Name: "Ruffles", Url: "http://google.com.br", Store: "Pão de açucar"},
-		Product{Name: "Pão de Batata", Url: "http://google.com.br", Store: "Extra"},
-	}
+func handler(w http.ResponseWriter, r *http.Request){	
+
+
+	products := getProducts()
+
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+  w.WriteHeader(http.StatusOK)
 
 	json.NewEncoder(w).Encode(products)
 }
 
+
 func main() {
-	http.HandleFunc("/products", getProducts)
+	http.HandleFunc("/", handler)
+
 	http.ListenAndServe(":3000", nil)
+
 }
